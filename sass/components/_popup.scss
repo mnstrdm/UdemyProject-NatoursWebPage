@@ -1,0 +1,189 @@
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 300;
+
+  opacity: 0; // by we set the opacity to 0, the elements are stay there
+  visibility: hidden; // thats why we set the visibility hidden
+
+  transition: all 0.3s;
+
+  //If the broser support these methods than do this section
+  @supports (-webkit-backdrop-filter: blur(10px)) or
+    (backdrop-filter: blur(10px)) {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  &:target {
+    //if the #popup becomes the target (shown in the URL by clicking on tha "Book now" button)
+    //we give the popup id to the popup class element, thats why call tha pseudo class on the .popup class
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &:target &__content {
+    //when the popup is opend appears its original size
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  &__close {
+    &:link,
+    &:visited {
+      color: $color-gray-dark;
+      position: absolute;
+      top: 2.5rem;
+      right: 2.5rem;
+      font-size: 3rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.2s;
+      line-height: 1;
+    }
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+
+  &__content {
+    @include absCenter;
+
+    width: 75%;
+    height: 50rem;
+    background-color: $color-white;
+    box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    display: table; //we are fakeing that it is a real table. Like that way the left and right has the same height
+
+    // set these because we want to appear the content upscaled from the center of the screen
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.3);
+
+    overflow: hidden;
+
+    transition: all 0.4s 0.2s;
+  }
+
+  &__left {
+    width: 33.3333333%;
+    display: table-cell;
+  }
+  &__right {
+    width: 66.6666666%;
+    display: table-cell;
+    vertical-align: middle; //we can use this on table cells
+    padding: 3rem 5rem;
+  }
+  &__img {
+    display: block;
+    width: 100%;
+  }
+  &__text {
+    font-size: 1.4rem;
+    margin-bottom: 4rem;
+
+    -moz-column-count: 2;
+    -moz-column-gap: 4rem;
+    -moz-column-rule: 1px solid $color-gray-light-2;
+
+    column-count: 2;
+    column-gap: 4rem; //1em = 14px because of the current container font size is 14px
+    column-rule: 1px solid $color-gray-light-2;
+
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+
+  @include respond(tab-land) {
+    &__content {
+      @include absCenter;
+
+      width: 85%;
+      height: 90vh;
+    }
+
+    &__left {
+      width: 100%;
+      height: 30%;
+      display: block;
+      text-align: center;
+    }
+    &__right {
+      width: 100%;
+      height: 70%;
+      display: block;
+
+      padding: 2rem 4rem;
+    }
+    &__img {
+      display: inline-block;
+      width: 40%;
+
+      padding: 1rem;
+    }
+  }
+
+  @include respond(tab-port) {
+    &__content {
+      overflow: hidden;
+    }
+    &__right {
+      padding: 4rem 3rem;
+    }
+    &__text {
+      font-size: 1.6rem;
+      margin-bottom: 3rem;
+
+      -moz-column-count: 1;
+      -moz-column-gap: 0;
+      -moz-column-rule: none;
+
+      column-count: 1;
+      column-gap: 0; //1em = 14px because of the current container font size is 14px
+      column-rule: 1px solid $color-gray-light-2;
+
+      -moz-hyphens: auto;
+      -ms-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }
+  }
+
+  @include respond(phone) {
+    &__right {
+      padding: 2rem 3rem;
+    }
+
+    &__left {
+      width: 0;
+      height: 0;
+      display: none;
+      text-align: center;
+    }
+    // &__text {
+    //   margin-bottom: 3rem;
+
+    //   -moz-column-count: 1;
+    //   -moz-column-gap: 0;
+    //   -moz-column-rule: none;
+
+    //   column-count: 1;
+    //   column-gap: 0; //1em = 14px because of the current container font size is 14px
+    //   column-rule: 1px solid $color-gray-light-2;
+
+    //   -moz-hyphens: auto;
+    //   -ms-hyphens: auto;
+    //   -webkit-hyphens: auto;
+    //   hyphens: auto;
+    // }
+  }
+}

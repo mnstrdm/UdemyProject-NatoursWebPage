@@ -1,0 +1,49 @@
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%; // because of we use rem unit this is the base for our rem units
+  // at 62.5% font size we have 10px base font size
+  //
+  //
+  // @include respond(phone) {
+  //   font-size: 50%;
+  // }
+  //
+  //
+  //
+  //THE ORDER METTERS!
+  //put these descending order if use max-width
+  //(if use mobile first design and min-width than use ascending order
+  @include respond(tab-land) {
+    font-size: 56.25%; //1rem = 9px (9/16 = 56.25%)
+  }
+  @include respond(tab-port) {
+    font-size: 50%; //1rem = 8px (8/16 = 50%)
+  }
+  @include respond(big-desktop) {
+    // now it is ok here, because it use min-width,
+    // and applies over 1800px, dont conflict the two other max-width value
+    font-size: 75%; //1rem = 12px (12/16 = 75%)
+  }
+}
+
+body {
+  box-sizing: border-box;
+  position: relative;
+  padding: 3rem;
+
+  @include respond(tab-port) {
+    padding: 0;
+  }
+}
+
+::selection {
+  background-color: $color-primary;
+  color: $color-white;
+}
