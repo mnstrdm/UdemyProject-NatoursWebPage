@@ -2,7 +2,7 @@
 
 Hi Everyone,
 
-This website is being created as part of an Udemy course [Advanced CSS and Sass: Flexbox, Grid, Animations and More! - Jonas Schmedtmann](https://www.udemy.com/course/advanced-css-and-sass).
+This webpage is being created as part of an Udemy course [Advanced CSS and Sass: Flexbox, Grid, Animations and More! - Jonas Schmedtmann](https://www.udemy.com/course/advanced-css-and-sass).
 
 This course consisted of 3 parts, with each part creating 1 webpage. **This is the first part, where the webpage was created using the float property**, without utilizing either flexbox or grid. You find the other two parts in my repository ([2. Trillo](https://github.com/mnstrdm/UdemyProject-TrilloWebPage), [3. Nexter](https://github.com/mnstrdm/UdemyProject-NexterWebPage))
 
